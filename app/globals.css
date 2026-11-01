@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #faf8f4;
+  --color-card: #ffffff;
+  --color-line: #e7e3dc;
+  --color-ink: #1e293b;
+  --color-muted: #64748b;
+  --color-accent: #e8590c;
+  --color-accent-dark: #c2410c;
+  --color-accent-soft: #fff1e8;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html,
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+  /* On the impact screen, print only the card. */
+  body:has(.print-card) * {
+    visibility: hidden;
+  }
+  body:has(.print-card) .print-card,
+  body:has(.print-card) .print-card * {
+    visibility: visible;
+  }
+  .print-card {
+    position: absolute;
+    inset: 0 0 auto 0;
+    box-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
